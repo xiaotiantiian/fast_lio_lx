@@ -1,0 +1,54 @@
+readparam:
+    read_mode: 1 
+    play_times: 1
+    bag_num: 9
+    bag_names: ["2024-07-26-17-11-38.bag", #1
+               "1_2024-08-26-16-33-17.bag", # 2
+               "parking_lot_2024-08-19.bag", # 3
+               "parking_lot_2024-08-26-17-08-05.bag", # 4
+               "100hz_2021-02-05-19-50-54.bag", # 5
+               "testleida_2025-06-04-02-15-24.bag", #6
+               "2025-06-20-10-24-14.bag", #7 could2
+               "outdoor_run_100Hz_2020-12-27-17-12-19.bag", #8
+               "UAV_flip_over_0328.bag"] # 9
+    bag_file_path: "/home/tian/workspace/fast_lio_raw/bag/"
+
+sweeparam:
+    sweep_mode: 0
+    conbined_mode: 0       # 0 不启动点云复用 单独分割  1 启动点云复用 坐标转换
+    
+common:
+    lid_topic:  "/livox/lidar"
+    imu_topic:  "/livox/imu"
+    time_sync_en: false         # ONLY turn on when external time synchronization is really not possible
+    time_offset_lidar_to_imu: 0.0 # Time offset between lidar and IMU calibrated by other algorithms, e.g. LI-Init (can be found in README).
+                                  # This param will take effect no matter what time_sync_en is. So if the time offset is not known exactly, please set as 0.0
+
+preprocess:
+    lidar_type: 1                # 1 for Livox serials LiDAR, 2 for Velodyne LiDAR, 3 for ouster LiDAR, 
+    scan_line: 6
+    blind: 4
+
+mapping:
+    acc_cov: 0.1
+    gyr_cov: 0.1
+    b_acc_cov: 0.0001
+    b_gyr_cov: 0.0001
+    fov_degree:    90
+    det_range:     450.0
+    extrinsic_est_en:  false      # true: enable the online estimation of IMU-LiDAR extrinsic
+    extrinsic_T: [ 0.04165, 0.02326, -0.0284 ]
+    extrinsic_R: [ 1, 0, 0,
+                   0, 1, 0,
+                   0, 0, 1]
+
+publish:
+    path_en:  false
+    scan_publish_en:  true       # false: close all the point cloud output
+    dense_publish_en: true       # false: low down the points number in a global-frame point clouds scan.
+    scan_bodyframe_pub_en: true  # true: output the point cloud scans in IMU-body-frame
+
+pcd_save:
+    pcd_save_en: true
+    interval: -1                 # how many LiDAR frames saved in each pcd file; 
+                                 # -1 : all frames will be saved in ONE pcd file, may lead to memory crash when having too much frames.

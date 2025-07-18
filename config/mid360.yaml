@@ -1,0 +1,27 @@
+b_spline: {bs_integration: 1, control_state_num: 2, new_bsline_en: false, point_degree: 1,
+  state_queue_size: 4}
+common: {imu_topic: /livox/imu, lid_topic: /livox/lidar, time_offset_lidar_to_imu: 0.0,
+  time_sync_en: false}
+mapping:
+  acc_cov: 0.1
+  b_acc_cov: 0.0001
+  b_gyr_cov: 0.0001
+  det_range: 100.0
+  extrinsic_R: [1, 0, 0, 0, 1, 0, 0, 0, 1]
+  extrinsic_T: [-0.011, -0.02329, 0.04412]
+  extrinsic_est_en: false
+  fov_degree: 360
+  gyr_cov: 0.1
+pcd_save: {interval: -1, pcd_save_en: true}
+preprocess: {blind: 0.5, lidar_type: 1, scan_line: 4}
+publish: {dense_publish_en: true, path_en: true, scan_bodyframe_pub_en: true, scan_publish_en: true}
+readparam:
+  bag_file_path: /home/tian/workspace/fast_lio_raw/bag/par/
+  bag_names: [1_2024-08-26-16-33-17.bag, parking_lot_2024-08-19.bag, parking_lot_2024-08-26-17-08-05.bag,
+    "\u505C\u8F66\u573A1.bag", "\u505C\u8F66\u573A2.bag", parking_lot_jrh_1.bag, parking_lot_jrh_2.bag,
+    parking_lot_jrh_10.bag, 2025-07-02_16-30-24.bag, parking_lot_jrh_15.bag]
+  bag_num: 6
+  lidar_rostopic: 0
+  play_times: 10
+  read_mode: 1
+sweepparam: {conbined_mode: 0, sweep_mode: 0}
